@@ -1,26 +1,7 @@
-# Prompt
-"""
-TO ADD:
-3. Make a baby fish be an little f for a certain period of time after birth. During that time, it cannot reproduce. This could be done either inside the Fish class or in a new class called BabyFish
-4. Make a new class called PredatorFish that can only eat other fish. It should be able to eat only non predator fish and cannot eat Food. Predator fish not school and only should keep one another out if they have enough energy to mate.
-
-
-User Interface: Implement a simple text-based user interface that allows users to interact with the simulation by pausing, resuming, or changing the parameters such as fish reproduction rate, mortality rate, or food generation rate.
-Fish Aging: Introduce an aging mechanism for fish, where their energy consumption, reproduction rate, or chances of dying change based on their age. This would add an extra layer of realism to the simulation.
-Different Fish Species: Create different types of fish with different properties such as energy consumption, reproduction rate, and movement speed. This would make the simulation more engaging and complex.
-Predator-Prey Interaction: Introduce predators that can hunt and eat the fish. This would create a more dynamic environment and showcase the interactions between different species.
-Statistics and Visualization: Implement a system that tracks and displays the current population, number of food items, and other relevant statistics over time. This can help users understand how the fish tank ecosystem evolves over time.
-    - oldest fish, average age
-"""
-
-
 import os, random, time, math
 from itertools import product
 from typing import List, Tuple
 from colorama import Fore, Style, init
-
-# Initialize colorama
-init()
 
 
 class TankObject:
@@ -281,6 +262,7 @@ class Tank:
 
 
 def main():
+    init() # Initialize colorama
     tank = Tank()
     os.system('cls' if os.name == 'nt' else 'clear')
     while True:

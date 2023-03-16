@@ -48,6 +48,18 @@ Run the virtual fish tank simulation by executing:
 
 To stop the simulation, press `Ctrl+C`.
 
+
+## Future Enhancements
+
+1. **Baby Fish Stage**: Introduce a "baby fish" stage, where newly born fish are represented by a lowercase 'f' and cannot reproduce for a certain period of time. This feature could be added either within the existing Fish class or by creating a new BabyFish class.
+2. **Predator Fish**: Create a PredatorFish class that can only consume other fish, specifically non-predatory fish, and cannot eat Food. Predator fish should avoid schooling and only interact with one another for mating purposes when they have sufficient energy.
+3. **User Interface**: Develop a text-based user interface that lets users interact with the simulation by pausing, resuming, or modifying parameters like fish reproduction rate, mortality rate, and food generation rate.
+4. **Fish Aging**: Implement an aging mechanism for fish that affects their energy consumption, reproduction rate, and mortality based on their age, adding more realism to the simulation.
+5. **Different Fish Species**: Introduce various fish species with unique characteristics, such as energy consumption, reproduction rate, and movement speed, to increase the simulation's complexity and engagement.
+6. **Predator-Prey Interaction**: Add predators that hunt and consume fish to create a more dynamic environment and highlight interactions between different species.
+7. **Statistics and Visualization**: Design a system that monitors and presents data on the current population, food count, and other relevant statistics over time. This feature would help users observe the evolution of the fish tank ecosystem, providing insights on the oldest fish and average fish age.
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
