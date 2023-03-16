@@ -56,18 +56,20 @@ class TankObject:
 
 class Fish(TankObject):
     def __init__(self, x: int, y: int):
-        super().__init__(x, y, "F", Fore.CYAN)
+        super().__init__(x, y, "f", Fore.CYAN)
         self.energy = 30
-        self.reproduction_cooldown = 10
+        self.base_reproduction_cooldown = 10
         self.turns_since_last_reproduction = 0
         self.energy_required_for_reproduction = 20
-        self.max_energy = 30
+        self.max_energy = 60
         self.mortality_rate = 0.005
 
     def run(self, tank: 'Tank'):
         super().run(tank)
         self.move(tank)
         self.reproduce(tank)
+        if self.age > 10:
+            self.icon = "F"
 
     def is_dead(self) -> bool:
         return random.random() < self.mortality_rate or self.energy <= 0
@@ -95,22 +97,26 @@ class Fish(TankObject):
             new_y = self.y + dy
             if 1 <= new_x < tank.width - 1 and 1 <= new_y < tank.height - 1 and (new_x, new_y) not in (occupied_locations - food_locations):
                 distance = abs(target_x - new_x) + abs(target_y - new_y)
-                if distance < best_distance:
+                fish_neighbor_count = sum([1 for fish in tank.fish if max(abs(new_x - fish.x), abs(new_y - fish.y)) <= 4])
+
+                if distance < best_distance or (distance == best_distance and fish_neighbor_count > best_fish_neighbor_count):
                     best_move = (dx, dy)
                     best_distance = distance
+                    best_fish_neighbor_count = fish_neighbor_count
 
         if best_move is not None:
             self.x += best_move[0]
             self.y += best_move[1]
-            self.energy -= 1
+            self.energy -= 1 + 0.01 * (self.age // 10)  # Energy consumption increases by 1% every 10 turns
             for f in tank.food:
-                if self.energy < 20 and (self.x, self.y) == f.get_pos():
-                    self.energy += 10
+                if (self.x, self.y) == f.get_pos():
+                    self.energy += 20
                     tank.food.remove(f)
                     break
 
     def reproduce(self, tank: 'Tank'):
-        if self.turns_since_last_reproduction >= self.reproduction_cooldown and self.energy >= self.energy_required_for_reproduction:
+        reproduction_cooldown = self.base_reproduction_cooldown + self.age // 20  # Reproduction cooldown increases by 1 turn every 20 turns
+        if self.turns_since_last_reproduction >= reproduction_cooldown and self.energy >= self.energy_required_for_reproduction:
             possible_spawn_locations = [(0, 1), (1, 0), (0, -1), (-1, 0), (1, 1), (-1, 1), (-1, -1), (1, -1)]
             random.shuffle(possible_spawn_locations)
 
@@ -163,10 +169,10 @@ class Tank:
         self.width = terminal_size.columns - 4
         self.height = terminal_size.lines - 9
         # Parameters
-        self.max_population = 50
+        self.max_population = math.ceil(self.width * self.height * 0.015)
         self.max_food = 200
         self.new_food_interval = 10
-        self.new_food_amount = math.ceil(self.width/20)
+        self.new_food_amount = math.ceil(self.width/15)
 
         # Create a list of all possible locations and shuffle it
         all_locations = list(product(range(1, self.width - 1), range(1, self.height - 1)))
@@ -198,6 +204,9 @@ class Tank:
             return 0.0
         return sum(f.energy for f in self.fish) / len(self.fish)
 
+    def get_max_age(self) -> int:
+        return max(fish.age for fish in self.fish) if self.fish else 0
+
     @property
     def fish_locations(self):
         return set([f.get_pos() for f in self.fish])
@@ -227,7 +236,7 @@ class Tank:
         # Create a string for the tank including a status
         output = "\n".join(["".join(row) for row in grid])
         output += "\n"
-        output += f"Number of fish: {len(self.fish):5}      Fish births:    {self.fish_births:5}\n"
+        output += f"Number of fish: {len(self.fish):5}      Fish births:    {self.fish_births:5}      Max Age:          {self.get_max_age():5}\n"
         output += f"Number of food: {len(self.food):5}      Fish deaths:    {self.fish_deaths:5}\n"
         output += f"Iterations:     {self.iterations:5}      Average energy:  {self.average_fish_energy():.1f}\n"
 
