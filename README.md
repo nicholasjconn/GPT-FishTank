@@ -53,11 +53,18 @@ To stop the simulation, press `Ctrl+C` (`Control+C` on Mac).
 
 ## Future Enhancements
 
-1. **Predator Fish**: Create a PredatorFish class that can only consume other fish, specifically non-predatory fish, and cannot eat Food. Predator fish should avoid schooling and only interact with one another for mating purposes when they have sufficient energy.
-2. **User Interface**: Develop a text-based user interface that lets users interact with the simulation by pausing, resuming, or modifying parameters like fish reproduction rate, mortality rate, and food generation rate.
-3. **Different Fish Species**: Introduce various fish species with unique characteristics, such as energy consumption, reproduction rate, and movement speed, to increase the simulation's complexity and engagement.
-4. **Predator-Prey Interaction**: Add predators that hunt and consume fish to create a more dynamic environment and highlight interactions between different species.
+1. **Add comments and docstrings**: Include clear comments and docstrings explaining the purpose of each class, method, and variable.
+2. **Improve code organization**: Refactor the code into separate files (e.g. `fish.py`, `tank.py`, etc.) and use classes for better code organization and maintainability.
+3. **User Interraction**: Develop a text-based user interface that lets users interact with the simulation by pausing, resuming, or modifying parameters like fish reproduction rate, mortality rate, and food generation rate. Add error handling and validation for input parameters, such as tank dimensions.
+4. **Optimize performance**: Identify and optimize performance bottlenecks, especially in the `run` method and object searching. Implement a more efficient data structure for managing the objects in the tank, such as a spatial partitioning data structure (e.g., quadtree).
 5. **Statistics and Visualization**: Design a system that monitors and presents data on the current population, food count, and other relevant statistics over time. This feature would help users observe the evolution of the fish tank ecosystem, providing insights on the oldest fish and average fish age.
+6. **Different Fish Species**: Introduce various fish species with unique characteristics, such as energy consumption, reproduction rate, and movement speed, to increase the simulation's complexity and engagement.
+7. **Predator Fish**: Create a PredatorFish class that can only consume other fish, specifically non-predatory fish, and cannot eat Food. Predator fish should avoid schooling and only interact with one another for mating purposes when they have sufficient energy.
+8. **Predator-Prey Interaction**: Add predators that hunt and consume fish to create a more dynamic environment and highlight interactions between different species.
+9. **Implement a GUI**: Develop a graphical user interface (GUI) to make the simulation more visually appealing and user-friendly.
+10. **Improve fish behavior**: Improve fish AI, such as adding better decision-making for food searching or avoiding obstacles.
+11. **Enhance rock generation**: Improve the algorithm for generating rocks in the tank, ensuring a more realistic and aesthetically pleasing environment.
+12. **Include unit tests**: Add unit tests to ensure that the code is functioning correctly and to make future development more reliable.
 
 
 ## Change Log
@@ -74,6 +81,7 @@ To stop the simulation, press `Ctrl+C` (`Control+C` on Mac).
 - Ensured fish reproduction occurs only in the presence of other fish
 - Implemented an eating cooldown to prevent rapid food consumption and hoarding
 - Incorporated minor simulation improvements for overall performance enhancement
+- Added more Chat-GPT generated suggestions for next steps, ranked by Chat-GPT based on the ease of implementation and importance.
 
 
 ## Human Commentary
