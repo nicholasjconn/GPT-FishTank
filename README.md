@@ -46,22 +46,41 @@ This README.md was written solely by ChatGPT, demonstrating the capabilities of 
 Run the virtual fish tank simulation by executing:
 `python main.py`
 
-To stop the simulation, press `Ctrl+C`.
+### Windows and Linux
+
+To stop the simulation, press `Ctrl+C` (`Control+C` on Mac).
 
 
 ## Future Enhancements
 
-1. **Baby Fish Stage**: Introduce a "baby fish" stage, where newly born fish are represented by a lowercase 'f' and cannot reproduce for a certain period of time. This feature could be added either within the existing Fish class or by creating a new BabyFish class.
-2. **Predator Fish**: Create a PredatorFish class that can only consume other fish, specifically non-predatory fish, and cannot eat Food. Predator fish should avoid schooling and only interact with one another for mating purposes when they have sufficient energy.
-3. **User Interface**: Develop a text-based user interface that lets users interact with the simulation by pausing, resuming, or modifying parameters like fish reproduction rate, mortality rate, and food generation rate.
-4. **Fish Aging**: Implement an aging mechanism for fish that affects their energy consumption, reproduction rate, and mortality based on their age, adding more realism to the simulation.
-5. **Different Fish Species**: Introduce various fish species with unique characteristics, such as energy consumption, reproduction rate, and movement speed, to increase the simulation's complexity and engagement.
-6. **Predator-Prey Interaction**: Add predators that hunt and consume fish to create a more dynamic environment and highlight interactions between different species.
-7. **Statistics and Visualization**: Design a system that monitors and presents data on the current population, food count, and other relevant statistics over time. This feature would help users observe the evolution of the fish tank ecosystem, providing insights on the oldest fish and average fish age.
+1. **Predator Fish**: Create a PredatorFish class that can only consume other fish, specifically non-predatory fish, and cannot eat Food. Predator fish should avoid schooling and only interact with one another for mating purposes when they have sufficient energy.
+2. **User Interface**: Develop a text-based user interface that lets users interact with the simulation by pausing, resuming, or modifying parameters like fish reproduction rate, mortality rate, and food generation rate.
+3. **Different Fish Species**: Introduce various fish species with unique characteristics, such as energy consumption, reproduction rate, and movement speed, to increase the simulation's complexity and engagement.
+4. **Predator-Prey Interaction**: Add predators that hunt and consume fish to create a more dynamic environment and highlight interactions between different species.
+5. **Statistics and Visualization**: Design a system that monitors and presents data on the current population, food count, and other relevant statistics over time. This feature would help users observe the evolution of the fish tank ecosystem, providing insights on the oldest fish and average fish age.
+
+
+## Change Log
+
+### v1.1.0
+
+- Improved frame rate consistency for smoother simulation performance
+- Modified food distribution to form clumps instead of being uniformly spread across the tank
+- Introduced an age attribute to TankObject, adjusting reproduction and energy consumption based on age
+- Altered rock placement to form clusters, creating more structured environments
+- Established a parent class for Fish to enhance extendability
+- Enabled fish to change characters with age (e.g., 'f' to 'F')
+- Refined the Fish move method, factoring in fish neighbor count to promote schooling behavior
+- Ensured fish reproduction occurs only in the presence of other fish
+- Implemented an eating cooldown to prevent rapid food consumption and hoarding
+- Incorporated minor simulation improvements for overall performance enhancement
+
+
+## Human Commentary
+
+This experiment started as a way for me to test Chat-GPT for code generation. This is a powerful stress test for seeing how complex a program can get before Chat-GPT struggles to make changes as directed. I've been very impressed with Chat-GPT 4, which significantly outperformed Chat-GPT 3 in these tests. I will continue to have Chat-GPT add features and update the code until the written code becomes unusable or poorly designed based on my judgement. In the future, I plan to go through this process each time a new version of Chat-GPT is released.
 
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-Make sure to replace https://github.com/yourusername/virtual-fish-tank.git with the correct URL for your repository.
